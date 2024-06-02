@@ -79,6 +79,10 @@
           <h3>{{ product.name }}</h3>
           <p>{{ product.description }}</p>
           <p class="price">{{ product.price }}</p>
+          <q-btn
+            push round dense color="red" text-color="white" icon="delete"
+            @click="deleteProduct(index)"
+          />
         </div>
       </div>
     </section>
@@ -92,7 +96,6 @@
     <div class="q-pa-md">
     <q-card class="my-card">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/mzB1VGEGcSU?si=JNCyrZJ2kM5wUeNk" frameborder="0" allowfullscreen></iframe>
-
 
       <q-card-section>
         <div class="text-h6">Lucid Dream</div>
@@ -144,46 +147,78 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    deleteProduct(index) {
+      this.products.splice(index, 1);
+    }
   }
 };
 </script>
 
 <style scoped>
 #app {
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   text-align: center;
   color: #333;
+  padding-bottom: 60px;
+  background: #1c1c1c;
 }
 
 header {
-  background: #f8f8f8;
+  background: linear-gradient(90deg, #000000, #434343);
   padding: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
 header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 36px;
+  color: #fff;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
+  margin: 10px 0 0;
 }
 
 nav ul li {
   display: inline;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff8c00;
 }
 
 section {
-  padding: 40px 20px;
+  padding: 60px 20px;
   border-bottom: 1px solid #ddd;
+  color: #fff;
+}
+
+#home {
+  background: #333;
+}
+
+#about {
+  background: #444;
+}
+
+#products {
+  background: #555;
+}
+
+#contact {
+  background: #666;
 }
 
 .product-list {
@@ -195,24 +230,35 @@ section {
 .product {
   border: 1px solid #ddd;
   padding: 20px;
-  margin: 10px;
-  width: 200px;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  margin: 20px;
+  width: 250px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  background: #fff;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-10px);
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
 }
 
 .product img {
   width: 100%;
   height: auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
 }
 
 .product h3 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 10px 0;
 }
 
 .product .price {
   color: #e91e63;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 footer {
@@ -220,8 +266,9 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
+  background-color: #000;
   color: #fff;
   padding: 20px 0;
+  text-align: center;
 }
 </style>
